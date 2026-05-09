@@ -1,46 +1,17 @@
-# Astro Starter Kit: Basics
+# cecylia.xyz
 
-```sh
-npm create astro@latest -- --template basics
-```
+Minimal bilingual personal website and blog built with Astro, MDX content collections, and Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+| Command          | Action                                   |
+| :--------------- | :--------------------------------------- |
+| `npm run dev`    | Start the local dev server               |
+| `npm test`       | Run `astro check` and a production build |
+| `npm run lint`   | Run `astro check`                        |
+| `npm run format` | Format the project with Prettier         |
+| `npm run build`  | Build the production site                |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Content
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Blog posts live in `src/content/blog` as Markdown or MDX files. Each post uses frontmatter with `title`, `slug`, `date`, `language`, `category`, `excerpt`, `featured`, and optional `translation` slugs.

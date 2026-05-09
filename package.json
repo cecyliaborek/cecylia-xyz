@@ -8,10 +8,22 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test": "astro check && astro build",
+    "lint": "astro check",
+    "format": "prettier --write .",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.2.1"
+    "@astrojs/mdx": "^5.0.4",
+    "@tailwindcss/vite": "^4.2.4",
+    "astro": "^6.2.1",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }
