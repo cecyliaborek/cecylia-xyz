@@ -1,0 +1,4 @@
+Hi, I'm Cecylia. I'm a generalist - I don't have a single passion, just a lot of interests 
+and never enough time to pursue them all.
+By day I work at Splunk, building tools and experiences for other developers; this blog is where everything else goes. 
+Tech, everyday life, culture, and all my endeavors, in English and Polish.

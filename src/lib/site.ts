@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { intro } from './intro';
 
 export const languages = ['en', 'pl'] as const;
 export const categories = ['tech', 'lifestyle', 'culture'] as const;
@@ -43,8 +44,7 @@ export const ui = {
     home: {
       profileAlt: 'Portrait of Cecylia Tkacz',
       tagline: 'Developer, generalist, writer',
-      intro:
-        "Hi, I'm Cecylia. I write about tech, everyday life, and culture—in English and Polish. By day I work across frontend, documentation, and internal developer workflows; this blog is where the rest of it goes.",
+      intro: intro.en,
       socialLinks: [
         { label: 'github', href: 'https://github.com/cecyliaborek' },
         {
@@ -91,8 +91,7 @@ export const ui = {
     home: {
       profileAlt: 'Zdjęcie Cecylii Tkacz',
       tagline: 'Programistka, generalistka, pisarka',
-      intro:
-        'Cześć, jestem Cecylia. Piszę o technologii, codzienności i kulturze—po polsku i po angielsku. Na co dzień pracuję na styku frontendu, dokumentacji i wewnętrznych narzędzi developerskich; na blogu ląduje reszta.',
+      intro: intro.pl,
       socialLinks: [
         { label: 'github', href: 'https://github.com/cecyliaborek' },
         {
