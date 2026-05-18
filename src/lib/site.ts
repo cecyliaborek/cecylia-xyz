@@ -41,24 +41,23 @@ export const ui = {
       postFilters: 'Post filters',
     },
     home: {
-      nouns: ['Developer', 'Generalist', 'Writer'],
+      profileAlt: 'Portrait of Cecylia Tkacz',
+      tagline: 'Developer, generalist, writer',
       intro:
-        'Software engineer writing about software, everyday systems, and the culture around the tools we use.',
+        "Hi, I'm Cecylia. I write about tech, everyday life, and culture—in English and Polish. By day I work across frontend, documentation, and internal developer workflows; this blog is where the rest of it goes.",
       socialLinks: [
         { label: 'github', href: 'https://github.com/cecyliaborek' },
         {
           label: 'linkedin',
           href: 'https://www.linkedin.com/in/cecyliaborek/',
         },
+        {
+          label: 'goodreads',
+          href: 'https://www.goodreads.com/user/show/30514170-cecylia',
+        },
       ],
-      about:
-        'I am a software engineer interested in thoughtful developer experience, durable documentation, and small systems that make work calmer.',
-      experience: [
-        'Building product surfaces and internal tools with a focus on clarity, maintainability, and pragmatic delivery.',
-        'Working across frontend, documentation, and platform workflows where technical decisions need to be understandable to people.',
-      ],
-      featuredPosts: 'Writing',
-      latestPosts: 'all posts →',
+      recentPosts: 'Writing',
+      allPosts: 'All posts',
       contact: 'Email me at',
     },
     blog: {
@@ -90,24 +89,23 @@ export const ui = {
       postFilters: 'Filtry postów',
     },
     home: {
-      nouns: ['Programistka', 'Generalistka', 'Pisarka'],
+      profileAlt: 'Zdjęcie Cecylii Tkacz',
+      tagline: 'Programistka, generalistka, pisarka',
       intro:
-        'Programistka pisząca o oprogramowaniu, codziennych systemach i kulturze wokół narzędzi, których używamy.',
+        'Cześć, jestem Cecylia. Piszę o technologii, codzienności i kulturze—po polsku i po angielsku. Na co dzień pracuję na styku frontendu, dokumentacji i wewnętrznych narzędzi developerskich; na blogu ląduje reszta.',
       socialLinks: [
         { label: 'github', href: 'https://github.com/cecyliaborek' },
         {
           label: 'linkedin',
           href: 'https://www.linkedin.com/in/cecyliaborek/',
         },
+        {
+          label: 'goodreads',
+          href: 'https://www.goodreads.com/user/show/30514170-cecylia',
+        },
       ],
-      about:
-        'Jestem software engineerką zainteresowaną dobrym developer experience, trwałą dokumentacją i małymi systemami, które porządkują pracę.',
-      experience: [
-        'Buduję interfejsy produktowe i narzędzia wewnętrzne z naciskiem na czytelność, utrzymanie i pragmatyczne dowożenie.',
-        'Pracuję na styku frontendu, dokumentacji i platform, gdzie decyzje techniczne muszą być zrozumiałe dla ludzi.',
-      ],
-      featuredPosts: 'Teksty',
-      latestPosts: 'wszystkie posty →',
+      recentPosts: 'Pisanie',
+      allPosts: 'Wszystkie posty',
       contact: 'Napisz do mnie',
     },
     blog: {

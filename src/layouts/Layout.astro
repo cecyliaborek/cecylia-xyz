@@ -43,15 +43,13 @@ const navItems = [
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body class="min-h-screen">
-    <div
-      class="mx-auto flex min-h-screen w-full max-w-[680px] flex-col px-5 py-5 sm:px-6 sm:py-7"
-    >
+  <body>
+    <div class="mx-auto w-full max-w-[42rem] px-5 py-6 sm:px-6 sm:py-8">
       <header
-        class="flex flex-col gap-4 border-b border-stone-200 pb-5 font-sans text-[13px] sm:flex-row sm:items-center sm:justify-between"
+        class="flex flex-col gap-4 font-sans text-[0.8125rem] sm:flex-row sm:items-center sm:justify-between"
       >
         <a
-          class="font-medium tracking-wide no-underline"
+          class="text-ink no-underline transition hover:underline"
           href={getHomeUrl(lang)}
         >
           {copy.navTitle}
@@ -65,8 +63,8 @@ const navItems = [
               navItems.map((item) => (
                 <a
                   class:list={[
-                    'text-stone-500 no-underline transition hover:text-stone-950',
-                    active === item.key && 'text-stone-950',
+                    'text-muted no-underline transition hover:text-ink hover:underline',
+                    active === item.key && 'text-ink underline',
                   ]}
                   href={item.href}
                   aria-current={
@@ -80,38 +78,46 @@ const navItems = [
               ))
             }
           </nav>
-          <nav class="flex gap-2 text-xs" aria-label={copy.a11y.languageSwitch}>
+          <nav
+            class="text-muted flex items-center gap-2 text-xs"
+            aria-label={copy.a11y.languageSwitch}
+          >
             {
-              languages.map((language) => (
-                <a
-                  class:list={[
-                    'rounded-full border px-2.5 py-1 no-underline transition',
-                    language === lang
-                      ? 'border-stone-900 bg-stone-900 text-white'
-                      : 'border-stone-300 text-stone-500 hover:border-stone-900 hover:text-stone-950',
-                  ]}
-                  href={alternateUrls[language] ?? getHomeUrl(language)}
-                  aria-current={language === lang ? 'true' : undefined}
-                >
-                  {language.toUpperCase()}
-                </a>
+              languages.map((language, index) => (
+                <>
+                  {index > 0 && (
+                    <span class="text-line" aria-hidden="true">
+                      /
+                    </span>
+                  )}
+                  <a
+                    class:list={[
+                      'no-underline transition hover:text-ink hover:underline',
+                      language === lang && 'text-ink underline',
+                    ]}
+                    href={alternateUrls[language] ?? getHomeUrl(language)}
+                    aria-current={language === lang ? 'true' : undefined}
+                  >
+                    {language.toUpperCase()}
+                  </a>
+                </>
               ))
             }
           </nav>
         </div>
       </header>
 
-      <main class="flex-1 py-10 sm:py-12">
+      <main class="py-8 sm:py-10">
         <slot />
       </main>
 
       <footer
         id="contact"
-        class="flex flex-col gap-3 border-t border-stone-200 py-6 font-sans text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between"
+        class="text-muted mt-16 flex flex-col gap-2 font-sans text-[0.8125rem] sm:mt-20 sm:flex-row sm:items-center sm:justify-between"
       >
         <p>
-          {copy.home.contact}
-          <a class="text-stone-950" href="mailto:hello@example.com"
+          {copy.home.contact}{' '}
+          <a class="text-ink hover:underline" href="mailto:hello@example.com"
             >hello@example.com</a
           >
         </p>

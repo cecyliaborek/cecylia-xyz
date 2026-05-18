@@ -26,6 +26,23 @@ const alternateUrls: Record<Language, string> = {
   en: getBlogUrl('en'),
   pl: getBlogUrl('pl'),
 };
+const requestedLanguage = Astro.url.searchParams.get('language') ?? undefined;
+const requestedCategory = Astro.url.searchParams.get('category') ?? undefined;
+
+function isCategory(
+  value: string | undefined,
+): value is (typeof categories)[number] {
+  return categories.includes(value as (typeof categories)[number]);
+}
+
+const activeLanguage =
+  requestedLanguage === 'all' || isLanguage(requestedLanguage)
+    ? requestedLanguage
+    : lang;
+const activeCategory =
+  requestedCategory === 'all' || isCategory(requestedCategory)
+    ? requestedCategory
+    : 'all';
 
 const languageFilterLinks = [
   { value: 'all', label: copy.blog.all },
@@ -48,6 +65,22 @@ function filterUrl(language: string, category: string) {
   params.set('category', category);
   return `${getBlogUrl(lang)}?${params.toString()}`;
 }
+
+function isPostVisible(post: (typeof posts)[number]) {
+  const languageMatches =
+    activeLanguage === 'all' || post.data.language === activeLanguage;
+  const categoryMatches =
+    activeCategory === 'all' || post.data.category === activeCategory;
+
+  return languageMatches && categoryMatches;
+}
+
+function isFilterActive(kind: 'language' | 'category', value: string) {
+  return (
+    (kind === 'language' && value === activeLanguage) ||
+    (kind === 'category' && value === activeCategory)
+  );
+}
 ---
 
 <Layout
@@ -57,86 +90,108 @@ function filterUrl(language: string, category: string) {
   active="posts"
   alternateUrls={alternateUrls}
 >
-  <section>
+  <header>
     <h1
-      class="text-[30px] leading-tight font-normal tracking-normal sm:text-[36px]"
+      class="font-sans text-[1.625rem] leading-tight font-bold tracking-tight sm:text-[1.875rem]"
     >
       {copy.blog.title}
     </h1>
+    <p class="mt-4 text-[1.0625rem] leading-7">
+      {copy.blog.description}
+    </p>
+  </header>
+
+  <section class="mt-8 space-y-3" aria-label={copy.a11y.postFilters}>
+    <p class="text-[1.0625rem] leading-7">
+      <span class="font-sans font-bold">{copy.blog.language}:</span>
+      {
+        languageFilterLinks.map((item, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true"> · </span>}
+            <a
+              class:list={[
+                'filter-link',
+                isFilterActive('language', item.value)
+                  ? 'text-link underline'
+                  : 'text-ink no-underline hover:underline',
+              ]}
+              href={filterUrl(item.value, activeCategory)}
+              data-filter-kind="language"
+              data-filter-value={item.value}
+              aria-current={
+                isFilterActive('language', item.value) ? 'true' : undefined
+              }
+            >
+              {item.label}
+            </a>
+          </>
+        ))
+      }
+    </p>
+    <p class="text-[1.0625rem] leading-7">
+      <span class="font-sans font-bold">{copy.blog.category}:</span>
+      {
+        categoryFilterLinks.map((item, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true"> · </span>}
+            <a
+              class:list={[
+                'filter-link',
+                isFilterActive('category', item.value)
+                  ? 'text-link underline'
+                  : 'text-ink no-underline hover:underline',
+              ]}
+              href={filterUrl(activeLanguage, item.value)}
+              data-filter-kind="category"
+              data-filter-value={item.value}
+              aria-current={
+                isFilterActive('category', item.value) ? 'true' : undefined
+              }
+            >
+              {item.label}
+            </a>
+          </>
+        ))
+      }
+    </p>
   </section>
 
-  <section class="mt-4 space-y-2" aria-label={copy.a11y.postFilters}>
-    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <p
-        class="min-w-[4.75rem] font-sans text-[12px] font-medium tracking-[0.1em] text-stone-500 uppercase"
-      >
-        {copy.blog.language}
-      </p>
-      <div class="flex flex-wrap gap-x-2.5 gap-y-1 font-sans text-[13px]">
-        {
-          languageFilterLinks.map((item, index) => (
-            <>
-              {index > 0 && <span class="text-stone-300">/</span>}
-              <a
-                class="filter-link text-stone-500 no-underline transition hover:text-stone-950 hover:underline"
-                href={filterUrl(item.value, 'all')}
-                data-filter-kind="language"
-                data-filter-value={item.value}
-              >
-                {item.label}
-              </a>
-            </>
-          ))
-        }
-      </div>
-    </div>
-    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <p
-        class="min-w-[4.75rem] font-sans text-[12px] font-medium tracking-[0.1em] text-stone-500 uppercase"
-      >
-        {copy.blog.category}
-      </p>
-      <div class="flex flex-wrap gap-x-2.5 gap-y-1 font-sans text-[13px]">
-        {
-          categoryFilterLinks.map((item, index) => (
-            <>
-              {index > 0 && <span class="text-stone-300">/</span>}
-              <a
-                class="filter-link text-stone-500 no-underline transition hover:text-stone-950 hover:underline"
-                href={filterUrl(lang, item.value)}
-                data-filter-kind="category"
-                data-filter-value={item.value}
-              >
-                {item.label}
-              </a>
-            </>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="mt-5" aria-live="polite">
-    <div id="post-list" class="border-t border-stone-200">
+  <section class="mt-10 sm:mt-12" aria-live="polite">
+    <ul id="post-list" class="list-none space-y-4 pl-0">
       {
         posts.map((post) => (
           <PostPreview
             post={post}
             locale={lang}
-            initiallyHidden={post.data.language !== lang}
+            initiallyHidden={!isPostVisible(post)}
           />
         ))
       }
-    </div>
-    <p id="empty-state" class="hidden py-10 text-stone-600">
+    </ul>
+    <p id="empty-state" class="mt-5 hidden text-[1.0625rem] leading-7">
       {copy.blog.noPosts}
     </p>
   </section>
 
-  <script is:inline define:vars={{ defaultLanguage: lang }}>
+  <script
+    is:inline
+    define:vars={{
+      defaultLanguage: lang,
+      validLanguages: languages,
+      validCategories: categories,
+    }}
+  >
     const params = new URLSearchParams(window.location.search);
-    const activeLanguage = params.get('language') || defaultLanguage;
-    const activeCategory = params.get('category') || 'all';
+    const requestedLanguage = params.get('language') || defaultLanguage;
+    const requestedCategory = params.get('category') || 'all';
+    const activeLanguage =
+      requestedLanguage === 'all' || validLanguages.includes(requestedLanguage)
+        ? requestedLanguage
+        : defaultLanguage;
+    const activeCategory =
+      requestedCategory === 'all' || validCategories.includes(requestedCategory)
+        ? requestedCategory
+        : 'all';
     const cards = [...document.querySelectorAll('.post-card')];
     const emptyState = document.querySelector('#empty-state');
     const blogPath = `/${defaultLanguage}/blog/`;
@@ -167,8 +222,13 @@ function filterUrl(language: string, category: string) {
         category: nextCategory,
       });
 
-      link.classList.toggle('text-stone-950', isActive);
+      link.classList.toggle('text-link', isActive);
+      link.classList.toggle('text-ink', !isActive);
       link.classList.toggle('underline', isActive);
+      link.classList.remove('no-underline');
+      if (!isActive) {
+        link.classList.add('no-underline');
+      }
       link.setAttribute('href', `${blogPath}?${nextParams.toString()}`);
       link.setAttribute('aria-current', isActive ? 'true' : 'false');
     }

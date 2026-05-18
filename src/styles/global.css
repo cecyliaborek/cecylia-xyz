@@ -2,8 +2,16 @@
 
 @theme {
   --font-sans:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+  --color-page: #ffffff;
+  --color-ink: #171717;
+  --color-muted: #737373;
+  --color-line: #e5e5e5;
+  --color-accent: #171717;
+  --color-accent-soft: #f5f5f5;
+  --color-link: #2200cc;
 }
 
 html {
@@ -11,7 +19,7 @@ html {
 }
 
 body {
-  @apply bg-[#fbfaf7] font-sans text-[#1f1f1c] antialiased;
+  @apply bg-page text-ink font-serif antialiased;
 }
 
 a {
@@ -19,11 +27,11 @@ a {
 }
 
 ::selection {
-  @apply bg-stone-300 text-[#1f1f1c];
+  @apply bg-accent-soft text-ink;
 }
 
 .post-content {
-  @apply max-w-none text-stone-800;
+  @apply text-ink max-w-none;
 }
 
 .post-content > * + * {
@@ -32,7 +40,7 @@ a {
 
 .post-content h2,
 .post-content h3 {
-  @apply mt-9 font-normal text-stone-950;
+  @apply text-ink mt-9 font-normal;
 }
 
 .post-content p,
@@ -41,7 +49,7 @@ a {
 }
 
 .post-content a {
-  @apply text-stone-950 underline;
+  @apply text-ink underline;
 }
 
 .post-content ul,
