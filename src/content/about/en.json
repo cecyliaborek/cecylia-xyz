@@ -1,0 +1,79 @@
+{
+  "description": "A bit more about Cecylia — work, speaking, reading, and where to find me online.",
+  "sections": [
+    {
+      "paragraphs": [
+        "I'm a generalist: lots of interests, never quite enough time for all of them. I write this site in English and Polish about tech, everyday life, and culture — observations, things I'm learning, and whatever else I want to think through in public.",
+        "If the homepage is the short version, this is the slightly longer one."
+      ]
+    },
+    {
+      "heading": "Work",
+      "paragraphs": [
+        "By day I'm at Splunk, building tools and experiences for other developers — mostly frontend, documentation, and internal developer workflows. I care about making technical systems easier to understand and use.",
+        "For a full professional history, LinkedIn is the right place."
+      ]
+    },
+    {
+      "heading": "Speaking",
+      "paragraphs": [
+        "I'm active in Toastmasters, practicing public speaking and structured feedback. I don't have external talks to link yet; when I do, they'll show up here too."
+      ]
+    },
+    {
+      "heading": "Reading",
+      "list": [
+        {
+          "kind": "link",
+          "label": "Goodreads",
+          "href": "https://www.goodreads.com/user/show/30514170-cecylia",
+          "note": "Books I read and rate — fiction, essays, and whatever I'm curious about."
+        },
+        {
+          "kind": "text",
+          "label": "Currently reading",
+          "text": "Update this when you like — title, author, and a line on why it's on your nightstand."
+        }
+      ]
+    },
+    {
+      "heading": "Listening",
+      "list": [
+        {
+          "kind": "link",
+          "label": "Spotify",
+          "href": "",
+          "note": "Playlists and albums I return to."
+        },
+        {
+          "kind": "text",
+          "label": "Currently listening",
+          "text": "Update this when you like — artist, album, or playlist."
+        }
+      ]
+    },
+    {
+      "heading": "Elsewhere",
+      "list": [
+        {
+          "kind": "link",
+          "label": "GitHub",
+          "href": "https://github.com/cecyliaborek",
+          "note": "Code and occasional experiments."
+        },
+        {
+          "kind": "link",
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/cecyliaborek/",
+          "note": "Professional profile."
+        },
+        {
+          "kind": "link",
+          "label": "Goodreads",
+          "href": "https://www.goodreads.com/user/show/30514170-cecylia",
+          "note": "Reading log."
+        }
+      ]
+    }
+  ]
+}

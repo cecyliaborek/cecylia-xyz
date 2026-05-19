@@ -1,0 +1,83 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getAboutContent } from '../../../lib/about';
+import {
+  getAboutUrl,
+  isLanguage,
+  languages,
+  ui,
+  type Language,
+} from '../../../lib/site';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+const lang = isLanguage(langParam) ? langParam : 'en';
+const copy = ui[lang];
+const about = getAboutContent(lang);
+const alternateUrls: Record<Language, string> = {
+  en: getAboutUrl('en'),
+  pl: getAboutUrl('pl'),
+};
+---
+
+<Layout
+  title={copy.nav.about}
+  description={about.description}
+  lang={lang}
+  active="about"
+  alternateUrls={alternateUrls}
+>
+  <header>
+    <h1
+      class="font-sans text-[1.625rem] leading-tight font-bold tracking-tight sm:text-[1.875rem]"
+    >
+      {copy.nav.about}
+    </h1>
+  </header>
+
+  <div class="mt-8 space-y-10">
+    {
+      about.sections.map((section) => (
+        <section class="space-y-4">
+          {section.heading && (
+            <h2 class="font-sans text-[1.25rem] font-bold tracking-tight">
+              {section.heading}
+            </h2>
+          )}
+          {section.paragraphs?.map((paragraph) => (
+            <p class="text-[1.0625rem] leading-7">{paragraph}</p>
+          ))}
+          {section.list && (
+            <ul class="list-none space-y-4 pl-0">
+              {section.list.map((item) => (
+                <li class="text-[1.0625rem] leading-7">
+                  {item.kind === 'link' && item.href ? (
+                    <>
+                      <a class="text-link underline" href={item.href}>
+                        {item.label}
+                      </a>
+                      {item.note && <span> {item.note}</span>}
+                    </>
+                  ) : item.kind === 'link' ? (
+                    <>
+                      <span class="font-sans font-bold">{item.label}</span>
+                      {item.note && <span> {item.note}</span>}
+                    </>
+                  ) : (
+                    <>
+                      <span class="font-sans font-bold">{item.label}</span>
+                      <span> {item.text}</span>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</Layout>

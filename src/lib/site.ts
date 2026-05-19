@@ -135,6 +135,10 @@ export function getBlogUrl(language: Language) {
   return `/${language}/blog/`;
 }
 
+export function getAboutUrl(language: Language) {
+  return `/${language}/about/`;
+}
+
 export function getPostUrl(post: BlogPost) {
   return `/${post.data.language}/blog/${post.data.category}/${post.data.slug}/`;
 }
