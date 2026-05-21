@@ -4,6 +4,11 @@
       "title": "cecylia.xyz",
       "description": "This site — bilingual writing and a small personal home on the web.",
       "href": "https://github.com/cecyliaborek/cecylia-xyz"
+    },
+    {
+      "title": "spectacular",
+      "description": "A simple testing framework created for fun in Node.js and TypeScript.",
+      "href": "https://github.com/cecyliaborek/spectacular"
     }
   ]
 }

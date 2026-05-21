@@ -1,23 +1,23 @@
 {
-  "description": "Trochę więcej o Cecylii — praca, wystąpienia, czytanie i gdzie mnie znaleźć online.",
+  "description": "Trochę więcej o Cecylii: praca, wystąpienia, czytanie i miejsca, w których można mnie znaleźć online.",
   "sections": [
     {
       "paragraphs": [
-        "Jestem generalistką: dużo zainteresowań i zawsze za mało czasu, żeby je wszystkie dogonić. Na tej stronie piszę po polsku i po angielsku o technologii, codzienności i kulturze — spostrzeżenia, to, czego się uczę, i wszystko, co chcę przemyśleć na głos.",
-        "Jeśli strona główna to skrót, to jest wersja nieco dłuższa."
+        "Jestem generalistką: mam dużo zainteresowań i zawsze za mało czasu, żeby je wszystkie dogonić. Na tej stronie piszę po polsku i po angielsku o technologii, codzienności i kulturze — o spostrzeżeniach, rzeczach, których się uczę, i wszystkim, co chcę przemyśleć na głos.",
+        "Jeśli strona główna jest wersją skróconą, tutaj jest trochę więcej kontekstu."
       ]
     },
     {
       "heading": "Praca",
       "paragraphs": [
-        "Na co dzień pracuję w Splunku, budując narzędzia i doświadczenia dla innych developerów — głównie frontend, dokumentacja i wewnętrzne workflowy. Zależy mi na tym, żeby systemy techniczne były łatwiejsze do zrozumienia i użycia.",
-        "Pełniejszą historię zawodową znajdziesz na LinkedIn."
+        "Na co dzień pracuję w Splunku, gdzie buduję narzędzia i doświadczenia dla innych developerów — głównie frontend, dokumentację i wewnętrzne procesy. Zależy mi na tym, żeby systemy techniczne były łatwiejsze do zrozumienia i użycia.",
+        "Pełniejszą historię zawodową można znaleźć na LinkedIn."
       ]
     },
     {
       "heading": "Wystąpienia",
       "paragraphs": [
-        "Jestem aktywna w Toastmasters — ćwiczę wystąpienia publiczne i feedback. Nie mam jeszcze zewnętrznych prelekcji do podlinkowania; jak się pojawią, dodam je tutaj."
+        "Jestem aktywna w Toastmasters — ćwiczę wystąpienia publiczne i dawanie informacji zwrotnej. Nie mam jeszcze zewnętrznych prelekcji, do których mogłabym odesłać; gdy się pojawią, dodam je tutaj."
       ]
     },
     {
@@ -27,12 +27,12 @@
           "kind": "link",
           "label": "Goodreads",
           "href": "https://www.goodreads.com/user/show/30514170-cecylia",
-          "note": "Książki, które czytam i oceniam — beletrystyka, eseje i to, co akurat mnie ciekawi."
+          "note": "Książki, które czytam i oceniam — beletrystyka, eseje i wszystko, co akurat mnie ciekawi."
         },
         {
           "kind": "text",
           "label": "Teraz czytam",
-          "text": "Uzupełnij, kiedy chcesz — tytuł, autor i dlaczego leży na stoliku."
+          "text": "Do uzupełnienia: tytuł, autor i krótka notatka o tym, dlaczego książka leży na stoliku."
         }
       ]
     },
@@ -48,7 +48,7 @@
         {
           "kind": "text",
           "label": "Teraz słucham",
-          "text": "Uzupełnij, kiedy chcesz — artysta, album lub playlista."
+          "text": "Do uzupełnienia: artysta, album albo playlista."
         }
       ]
     },

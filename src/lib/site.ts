@@ -80,18 +80,18 @@ export const ui = {
     navTitle: 'cecylia.xyz',
     nav: {
       about: 'O mnie',
-      posts: 'Posty',
+      posts: 'Wpisy',
       experience: 'Doświadczenie',
       contact: 'Kontakt',
     },
     a11y: {
       primaryNavigation: 'Główna nawigacja',
       languageSwitch: 'Przełącznik języka',
-      postFilters: 'Filtry postów',
+      postFilters: 'Filtry wpisów',
     },
     home: {
       profileAlt: 'Zdjęcie Cecylii Tkacz',
-      tagline: 'Programistka, generalistka, pisarka',
+      tagline: 'Programistka, generalistka, autorka tekstów',
       intro: intro.pl,
       socialLinks: [
         { label: 'github', href: 'https://github.com/cecyliaborek' },
@@ -106,20 +106,20 @@ export const ui = {
       ],
       projects: 'Projekty i eksperymenty',
       recentPosts: 'Pisanie',
-      allPosts: 'Wszystkie posty',
+      allPosts: 'Wszystkie wpisy',
       contact: 'Napisz do mnie',
     },
     blog: {
-      title: 'Posty',
+      title: 'Wpisy',
       description:
-        'Teksty po polsku i angielsku o techu, lifestyle’u i kulturze.',
+        'Teksty po polsku i angielsku o technologii, codzienności i kulturze.',
       language: 'Język',
       category: 'Kategoria',
       all: 'Wszystkie',
-      noPosts: 'Brak postów dla tych filtrów.',
+      noPosts: 'Brak wpisów dla tych filtrów.',
     },
     post: {
-      back: 'Wróć do postów',
+      back: 'Wróć do wpisów',
       translation: 'Tłumaczenie',
     },
   },
