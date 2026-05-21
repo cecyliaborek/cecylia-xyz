@@ -1,14 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
+import PostPreview from '../../components/PostPreview.astro';
 import Layout from '../../layouts/Layout.astro';
+import {
+  getExternalPosts,
+  getLocalPostPreview,
+  getRecentPosts,
+} from '../../lib/posts';
 import { getFeaturedProjects } from '../../lib/projects';
 import {
   getBlogUrl,
   getHomeUrl,
-  getPostUrl,
   isLanguage,
   languages,
-  sortPosts,
   ui,
   type Language,
 } from '../../lib/site';
@@ -20,10 +24,14 @@ export function getStaticPaths() {
 const langParam = Astro.params.lang;
 const lang = isLanguage(langParam) ? langParam : 'en';
 const copy = ui[lang];
-const posts = sortPosts(await getCollection('blog'));
-const recentPosts = posts
-  .filter((post) => post.data.language === lang)
-  .slice(0, 5);
+const localPostFiles = import.meta.glob('../../content/blog/**/*.md');
+const localPosts =
+  Object.keys(localPostFiles).length > 0
+    ? (await getCollection('blog'))
+        .filter((post) => post.data.language === lang)
+        .map(getLocalPostPreview)
+    : [];
+const recentPosts = getRecentPosts([...getExternalPosts(), ...localPosts]);
 const projects = getFeaturedProjects(lang);
 const alternateUrls: Record<Language, string> = {
   en: getHomeUrl('en'),
@@ -101,16 +109,7 @@ const alternateUrls: Record<Language, string> = {
       {copy.home.recentPosts}
     </h2>
     <ul class="mt-5 list-none space-y-4 pl-0">
-      {
-        recentPosts.map((post) => (
-          <li class="text-[1.0625rem] leading-7">
-            <a class="text-link underline" href={getPostUrl(post)}>
-              {post.data.title}
-            </a>
-            <span> {post.data.excerpt}</span>
-          </li>
-        ))
-      }
+      {recentPosts.map((post) => <PostPreview post={post} locale={lang} />)}
     </ul>
     <p class="mt-5 text-[1.0625rem] leading-7">
       <a class="text-link underline" href={getBlogUrl(lang)}>

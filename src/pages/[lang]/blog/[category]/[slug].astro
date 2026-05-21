@@ -4,17 +4,19 @@ import Layout from '../../../../layouts/Layout.astro';
 import {
   formatDate,
   getBlogUrl,
-  getCategoryLabel,
   getPostLanguageSwitchUrl,
-  languageLabels,
-  sortPosts,
   ui,
   type BlogPost,
-  type Category,
   type Language,
 } from '../../../../lib/site';
 
 export async function getStaticPaths() {
+  const localPostFiles = import.meta.glob('../../../../content/blog/**/*.md');
+
+  if (Object.keys(localPostFiles).length === 0) {
+    return [];
+  }
+
   const posts = await getCollection('blog');
 
   return posts.map((post) => ({
@@ -28,9 +30,8 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props.post as BlogPost;
-const posts = sortPosts(await getCollection('blog'));
+const posts = await getCollection('blog');
 const lang = post.data.language as Language;
-const category = post.data.category as Category;
 const copy = ui[lang];
 const { Content } = await render(post);
 const alternateUrls: Record<Language, string> = {
@@ -45,33 +46,38 @@ const realTranslations = Object.entries(alternateUrls).filter(
 
 <Layout
   title={post.data.title}
-  description={post.data.excerpt}
+  description={post.data.excerpt ?? post.data.title}
   lang={lang}
   active="posts"
   alternateUrls={alternateUrls}
 >
   <article>
-    <a class="font-sans text-[0.8125rem] text-muted no-underline hover:text-ink hover:underline" href={getBlogUrl(lang)}
-      >{copy.post.back}</a
+    <a
+      class="font-sans text-[0.8125rem] text-muted no-underline hover:text-ink hover:underline"
+      href={getBlogUrl(lang)}>{copy.post.back}</a
     >
     <header class="border-line mt-6 border-b pb-8">
       <p class="text-muted font-sans text-[0.8125rem]">
-        {getCategoryLabel(category, lang)} · {languageLabels[lang]} · {
-          formatDate(post.data.date, lang)
-        }
+        {formatDate(post.data.date, lang)}
       </p>
-      <h1 class="mt-4 text-[1.875rem] leading-tight font-normal tracking-tight sm:text-[2.25rem]">
+      <h1
+        class="mt-4 text-[1.875rem] leading-tight font-normal tracking-tight sm:text-[2.25rem]"
+      >
         {post.data.title}
       </h1>
-      <p class="mt-4 text-[1.125rem] leading-8 text-muted">
-        {post.data.excerpt}
-      </p>
+      {
+        post.data.excerpt && (
+          <p class="mt-4 text-[1.125rem] leading-8 text-muted">
+            {post.data.excerpt}
+          </p>
+        )
+      }
       {
         realTranslations.length > 0 && (
           <div class="mt-5 flex flex-wrap gap-2 font-sans text-sm">
             <span>{copy.post.translation}:</span>
             {realTranslations.map(([language, url]) => (
-              <a href={url}>{languageLabels[language as Language]}</a>
+              <a href={url}>{language.toUpperCase()}</a>
             ))}
           </div>
         )

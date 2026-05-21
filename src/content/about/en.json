@@ -3,52 +3,34 @@
   "sections": [
     {
       "paragraphs": [
-        "I'm a generalist: lots of interests, never quite enough time for all of them. I write this site in English and Polish about tech, everyday life, and culture — observations, things I'm learning, and whatever else I want to think through in public.",
-        "If the homepage is the short version, this is the slightly longer one."
+        "I'm a generalist: lots of interests, never quite enough time for all of them. I write this site in English and Polish about tech, everyday life, and culture — observations, things I'm learning, and whatever else I want to think through in public."
       ]
     },
     {
       "heading": "Work",
       "paragraphs": [
-        "By day I'm at Splunk, building tools and experiences for other developers — mostly frontend, documentation, and internal developer workflows. I care about making technical systems easier to understand and use.",
-        "For a full professional history, LinkedIn is the right place."
+        "Currently I work at Splunk, building tools for other developers. As a true generalist, I don't have favorite technology or area of expertise. I take the biggest satisfaction from learning new things.",
+        "Before Splunk, I worked at several different companies across Europe on many different projects. TRUE GENERALIST. From enhancing 4G connectivity at Nokia,  through improving compatibility for millions of Windows users, to developing a mission-critical emergency management application at eurofunk Kappacher."
       ]
     },
     {
-      "heading": "Speaking",
+      "heading": "Current hobbies",
       "paragraphs": [
-        "I'm active in Toastmasters, practicing public speaking and structured feedback. I don't have external talks to link yet; when I do, they'll show up here too."
+        "Recently I finally bought a second hand camera (Sony a6000 with Sigma C 18-50mm f/2.8 lens) and have been learning photography. It's something I wanted to do for years and I am so happy to be finally doing it. Yay!",
+        "I'm active in Toastmasters. The older I am, the more I realize that everything in life is about communication. And it is a life long journey to master it. I also love the people in my club!"
       ]
     },
     {
-      "heading": "Reading",
-      "list": [
-        {
-          "kind": "link",
-          "label": "Goodreads",
-          "href": "https://www.goodreads.com/user/show/30514170-cecylia",
-          "note": "Books I read and rate — fiction, essays, and whatever I'm curious about."
-        },
-        {
-          "kind": "text",
-          "label": "Currently reading",
-          "text": "Update this when you like — title, author, and a line on why it's on your nightstand."
-        }
-      ]
+      "heading": "Past hobbies",
+      "paragraphs": []
     },
     {
-      "heading": "Listening",
+      "heading": "Misc",
       "list": [
         {
-          "kind": "link",
-          "label": "Spotify",
-          "href": "",
-          "note": "Playlists and albums I return to."
-        },
-        {
           "kind": "text",
-          "label": "Currently listening",
-          "text": "Update this when you like — artist, album, or playlist."
+          "label": "Favorite book:",
+          "text": "Anything by Haruki Murakami"
         }
       ]
     },

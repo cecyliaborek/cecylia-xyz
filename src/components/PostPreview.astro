@@ -1,40 +1,54 @@
 ---
-import {
-  formatShortDate,
-  getCategoryLabel,
-  getPostUrl,
-  languageLabels,
-  type BlogPost,
-  type Language,
-} from '../lib/site';
+import type { Language } from '../lib/site';
+import type { WritingPost } from '../lib/posts';
 
 interface Props {
-  post: BlogPost;
+  post: WritingPost;
   locale: Language;
-  initiallyHidden?: boolean;
-  compact?: boolean;
 }
 
-const { post, locale, initiallyHidden = false, compact = false } = Astro.props;
-const meta = `${getCategoryLabel(post.data.category, locale)} · ${formatShortDate(post.data.date, locale)} · ${languageLabels[post.data.language]}`;
+const { post, locale } = Astro.props;
+const isExternal = post.kind === 'external';
+const opensInNewTabLabel =
+  locale === 'pl' ? 'otworzy się w nowej karcie' : 'opens in a new tab';
+const titleParts = post.title.match(/^(.*\s)(\S+)$/);
+const titlePrefix = titleParts?.[1] ?? '';
+const titleSuffix = titleParts?.[2] ?? post.title;
 ---
 
-<li
-  class="post-card text-[1.0625rem] leading-7"
-  data-language={post.data.language}
-  data-category={post.data.category}
-  hidden={initiallyHidden}
->
-  <a class="text-link underline" href={getPostUrl(post)}>
-    {post.data.title}
+<li class="post-card text-[1.0625rem] leading-7" data-category={post.category}>
+  <a
+    class="text-link underline"
+    href={post.href}
+    target={isExternal ? '_blank' : undefined}
+    rel={isExternal ? 'noopener noreferrer' : undefined}
+  >
+    {
+      isExternal ? (
+        <>
+          <span>{titlePrefix}</span>
+          <span class="whitespace-nowrap">
+            {titleSuffix}
+            <svg
+              aria-hidden="true"
+              class="ml-1 inline-block h-[0.72em] w-[0.72em] align-[-0.04em]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </span>
+          <span class="sr-only">({opensInNewTabLabel})</span>
+        </>
+      ) : (
+        post.title
+      )
+    }
   </a>
-  <span> {post.data.excerpt}</span>
-  {
-    !compact && (
-      <span class="text-muted">
-        {' '}
-        · {meta}
-      </span>
-    )
-  }
 </li>

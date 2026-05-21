@@ -8,11 +8,6 @@ export type Language = (typeof languages)[number];
 export type Category = (typeof categories)[number];
 export type BlogPost = CollectionEntry<'blog'>;
 
-export const languageLabels: Record<Language, string> = {
-  en: 'English',
-  pl: 'Polski',
-};
-
 export const categoryLabels: Record<Language, Record<Category, string>> = {
   en: {
     tech: 'Tech',
@@ -63,12 +58,9 @@ export const ui = {
     },
     blog: {
       title: 'Posts',
-      description:
-        'Writing in English and Polish across tech, lifestyle, and culture.',
-      language: 'Language',
       category: 'Category',
       all: 'All',
-      noPosts: 'No posts match these filters.',
+      noPosts: 'No posts match this category.',
     },
     post: {
       back: 'Back to posts',
@@ -111,12 +103,9 @@ export const ui = {
     },
     blog: {
       title: 'Wpisy',
-      description:
-        'Teksty po polsku i angielsku o technologii, codzienności i kulturze.',
-      language: 'Język',
       category: 'Kategoria',
       all: 'Wszystkie',
-      noPosts: 'Brak wpisów dla tych filtrów.',
+      noPosts: 'Brak wpisów w tej kategorii.',
     },
     post: {
       back: 'Wróć do wpisów',
@@ -141,32 +130,17 @@ export function getAboutUrl(language: Language) {
   return `/${language}/about/`;
 }
 
-export function getPostUrl(post: BlogPost) {
-  return `/${post.data.language}/blog/${post.data.category}/${post.data.slug}/`;
-}
-
 export function getCategoryLabel(category: Category, language: Language) {
   return categoryLabels[language][category];
 }
 
-export function sortPosts(posts: BlogPost[]) {
-  return [...posts].sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-  );
+export function getPostUrl(post: BlogPost) {
+  return `/${post.data.language}/blog/${post.data.category}/${post.data.slug}/`;
 }
 
 export function formatDate(date: Date, language: Language) {
   return new Intl.DateTimeFormat(language === 'pl' ? 'pl-PL' : 'en-US', {
     month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(date);
-}
-
-export function formatShortDate(date: Date, language: Language) {
-  return new Intl.DateTimeFormat(language === 'pl' ? 'pl-PL' : 'en-US', {
-    month: 'short',
     day: 'numeric',
     year: 'numeric',
     timeZone: 'UTC',

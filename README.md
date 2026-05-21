@@ -1,6 +1,6 @@
 # cecylia.xyz
 
-Minimal bilingual personal website and blog built with Astro, MDX content collections, and Tailwind CSS.
+Minimal bilingual personal website and blog built with Astro and Tailwind CSS.
 
 ## Commands
 
@@ -12,6 +12,8 @@ Minimal bilingual personal website and blog built with Astro, MDX content collec
 | `npm run format` | Format the project with Prettier         |
 | `npm run build`  | Build the production site                |
 
-## Content
+## Writing
 
-Blog posts live in `src/content/blog` as Markdown or MDX files. Each post uses frontmatter with `title`, `slug`, `date`, `language`, `category`, `excerpt`, `featured`, and optional `translation` slugs.
+Local posts live in `src/content/blog` as Markdown files. External writing links live in `src/lib/posts.ts`.
+
+External links open in a new tab and show an external-link icon. Local posts open on this site without the icon.

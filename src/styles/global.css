@@ -27,7 +27,7 @@ a {
 }
 
 ::selection {
-  @apply bg-accent-soft text-ink;
+  @apply bg-line text-ink;
 }
 
 .post-content {
