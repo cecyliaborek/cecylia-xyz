@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import {
-  getAboutUrl,
   getBlogUrl,
   getHomeUrl,
   languages,
@@ -13,13 +12,13 @@ interface Props {
   title: string;
   description?: string;
   lang: Language;
-  active?: 'home' | 'posts' | 'about';
+  active?: 'home' | 'posts';
   alternateUrls?: Partial<Record<Language, string>>;
 }
 
 const {
   title,
-  description = ui[Astro.props.lang].home.intro,
+  description = ui[Astro.props.lang].siteName,
   lang,
   active,
   alternateUrls = {},
@@ -29,7 +28,6 @@ const pageTitle =
   title === copy.siteName ? title : `${title} | ${copy.siteName}`;
 
 const navItems = [
-  { label: copy.nav.about, href: getAboutUrl(lang), key: 'about' },
   { label: copy.nav.posts, href: getBlogUrl(lang), key: 'posts' },
 ];
 ---
@@ -114,7 +112,7 @@ const navItems = [
         class="text-muted mt-16 flex flex-col gap-2 font-sans text-[0.8125rem] sm:mt-20 sm:flex-row sm:items-center sm:justify-between"
       >
         <p>
-          {copy.home.contact}{' '}
+          {copy.footer.contact}{' '}
           <a class="text-ink hover:underline" href="mailto:hello@example.com"
             >hello@example.com</a
           >

@@ -1,0 +1,48 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  profileAlt: string;
+  links: Link[];
+}
+
+const { title, profileAlt, links } = Astro.props;
+---
+
+<header
+  class="grid items-start gap-6 sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-x-10"
+>
+  <div>
+    <h1
+      class="font-sans text-[1.625rem] leading-tight font-bold tracking-tight sm:text-[1.875rem]"
+    >
+      {title}
+    </h1>
+    <div class="home-hero-copy mt-4 text-[1.0625rem] leading-7">
+      <slot />
+    </div>
+    <p class="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-[1.0625rem] leading-7">
+      {
+        links.map((link, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true">·</span>}
+            <a class="text-link underline" href={link.href}>
+              {link.label}
+            </a>
+          </>
+        ))
+      }
+    </p>
+  </div>
+  <img
+    class="aspect-square w-full max-w-[11rem] object-cover sm:w-[11rem] sm:justify-self-end"
+    src="/profile.jpg"
+    alt={profileAlt}
+    width="176"
+    height="176"
+  />
+</header>

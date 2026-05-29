@@ -55,7 +55,3 @@ export function getLocalPostPreview(post: BlogPost): LocalPostPreview {
 export function sortWritingPosts(posts: WritingPost[]) {
   return [...posts].sort((a, b) => b.date.getTime() - a.date.getTime());
 }
-
-export function getRecentPosts(posts: WritingPost[], limit = 5) {
-  return sortWritingPosts(posts).slice(0, limit);
-}

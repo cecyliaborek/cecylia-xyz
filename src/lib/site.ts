@@ -1,5 +1,4 @@
 import type { CollectionEntry } from 'astro:content';
-import { intro } from './intro';
 
 export const languages = ['en', 'pl'] as const;
 export const categories = ['tech', 'lifestyle', 'culture'] as const;
@@ -26,7 +25,6 @@ export const ui = {
     siteName: 'Cecylia Tkacz',
     navTitle: 'cecylia.xyz',
     nav: {
-      about: 'About',
       posts: 'Posts',
       experience: 'Experience',
       contact: 'Contact',
@@ -36,24 +34,7 @@ export const ui = {
       languageSwitch: 'Language switch',
       postFilters: 'Post filters',
     },
-    home: {
-      profileAlt: 'Portrait of Cecylia Tkacz',
-      tagline: 'Developer, generalist, writer',
-      intro: intro.en,
-      socialLinks: [
-        { label: 'github', href: 'https://github.com/cecyliaborek' },
-        {
-          label: 'linkedin',
-          href: 'https://www.linkedin.com/in/cecyliaborek/',
-        },
-        {
-          label: 'goodreads',
-          href: 'https://www.goodreads.com/user/show/30514170-cecylia',
-        },
-      ],
-      projects: 'Projects and experiments',
-      recentPosts: 'Writing',
-      allPosts: 'All posts',
+    footer: {
       contact: 'Email me at',
     },
     blog: {
@@ -71,7 +52,6 @@ export const ui = {
     siteName: 'Cecylia Tkacz',
     navTitle: 'cecylia.xyz',
     nav: {
-      about: 'O mnie',
       posts: 'Wpisy',
       experience: 'Doświadczenie',
       contact: 'Kontakt',
@@ -81,24 +61,7 @@ export const ui = {
       languageSwitch: 'Przełącznik języka',
       postFilters: 'Filtry wpisów',
     },
-    home: {
-      profileAlt: 'Zdjęcie Cecylii Tkacz',
-      tagline: 'Programistka, generalistka, autorka tekstów',
-      intro: intro.pl,
-      socialLinks: [
-        { label: 'github', href: 'https://github.com/cecyliaborek' },
-        {
-          label: 'linkedin',
-          href: 'https://www.linkedin.com/in/cecyliaborek/',
-        },
-        {
-          label: 'goodreads',
-          href: 'https://www.goodreads.com/user/show/30514170-cecylia',
-        },
-      ],
-      projects: 'Projekty i eksperymenty',
-      recentPosts: 'Pisanie',
-      allPosts: 'Wszystkie wpisy',
+    footer: {
       contact: 'Napisz do mnie',
     },
     blog: {
@@ -124,10 +87,6 @@ export function getHomeUrl(language: Language) {
 
 export function getBlogUrl(language: Language) {
   return `/${language}/blog/`;
-}
-
-export function getAboutUrl(language: Language) {
-  return `/${language}/about/`;
 }
 
 export function getCategoryLabel(category: Category, language: Language) {

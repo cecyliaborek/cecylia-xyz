@@ -1,19 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
-import PostPreview from '../../components/PostPreview.astro';
+import { getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import {
-  getExternalPosts,
-  getLocalPostPreview,
-  getRecentPosts,
-} from '../../lib/posts';
-import { getFeaturedProjects } from '../../lib/projects';
-import {
-  getBlogUrl,
   getHomeUrl,
   isLanguage,
   languages,
-  ui,
   type Language,
 } from '../../lib/site';
 
@@ -23,16 +14,13 @@ export function getStaticPaths() {
 
 const langParam = Astro.params.lang;
 const lang = isLanguage(langParam) ? langParam : 'en';
-const copy = ui[lang];
-const localPostFiles = import.meta.glob('../../content/blog/**/*.md');
-const localPosts =
-  Object.keys(localPostFiles).length > 0
-    ? (await getCollection('blog'))
-        .filter((post) => post.data.language === lang)
-        .map(getLocalPostPreview)
-    : [];
-const recentPosts = getRecentPosts([...getExternalPosts(), ...localPosts]);
-const projects = getFeaturedProjects(lang);
+const home = await getEntry('home', lang);
+
+if (!home) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(home);
 const alternateUrls: Record<Language, string> = {
   en: getHomeUrl('en'),
   pl: getHomeUrl('pl'),
@@ -40,81 +28,13 @@ const alternateUrls: Record<Language, string> = {
 ---
 
 <Layout
-  title={copy.siteName}
-  description={copy.home.intro}
+  title={home.data.title}
+  description={home.data.description}
   lang={lang}
   active="home"
   alternateUrls={alternateUrls}
 >
-  <header
-    class="grid items-start gap-6 sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-x-10"
-  >
-    <div>
-      <h1
-        class="font-sans text-[1.625rem] leading-tight font-bold tracking-tight sm:text-[1.875rem]"
-      >
-        {copy.siteName}
-      </h1>
-      <p class="mt-4 text-[1.0625rem] leading-7">
-        {copy.home.intro}
-      </p>
-      <p class="mt-4 flex flex-wrap gap-x-2 gap-y-1 text-[1.0625rem] leading-7">
-        {
-          copy.home.socialLinks.map((link, index) => (
-            <>
-              {index > 0 && <span aria-hidden="true">·</span>}
-              <a class="text-link underline" href={link.href}>
-                {link.label}
-              </a>
-            </>
-          ))
-        }
-      </p>
-    </div>
-    <img
-      class="aspect-square w-full max-w-[11rem] object-cover sm:w-[11rem] sm:justify-self-end"
-      src="/profile.jpg"
-      alt={copy.home.profileAlt}
-      width="176"
-      height="176"
-    />
-  </header>
-
-  {
-    projects.length > 0 && (
-      <section class="mt-14 sm:mt-16">
-        <h2 class="font-sans text-[1.25rem] font-bold tracking-tight">
-          {copy.home.projects}
-        </h2>
-        <ul class="mt-5 list-none space-y-4 pl-0">
-          {projects.map((project) => (
-            <li class="text-[1.0625rem] leading-7">
-              {project.href ? (
-                <a class="text-link underline" href={project.href}>
-                  {project.title}
-                </a>
-              ) : (
-                <span class="font-sans font-bold">{project.title}</span>
-              )}
-              <span> {project.description}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-
-  <section class="mt-14 sm:mt-16">
-    <h2 class="font-sans text-[1.25rem] font-bold tracking-tight">
-      {copy.home.recentPosts}
-    </h2>
-    <ul class="mt-5 list-none space-y-4 pl-0">
-      {recentPosts.map((post) => <PostPreview post={post} locale={lang} />)}
-    </ul>
-    <p class="mt-5 text-[1.0625rem] leading-7">
-      <a class="text-link underline" href={getBlogUrl(lang)}>
-        {copy.home.allPosts}
-      </a>
-    </p>
-  </section>
+  <div class="home-content">
+    <Content />
+  </div>
 </Layout>
