@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../../../layouts/Layout.astro';
 import {
   formatDate,
-  getBlogUrl,
+  getHomeUrl,
   getPostLanguageSwitchUrl,
   ui,
   type BlogPost,
@@ -40,7 +40,7 @@ const alternateUrls: Record<Language, string> = {
 };
 const realTranslations = Object.entries(alternateUrls).filter(
   ([language, url]) =>
-    language !== lang && url !== getBlogUrl(language as Language),
+    language !== lang && url !== getHomeUrl(language as Language),
 );
 ---
 
@@ -48,14 +48,16 @@ const realTranslations = Object.entries(alternateUrls).filter(
   title={post.data.title}
   description={post.data.excerpt ?? post.data.title}
   lang={lang}
-  active="posts"
   alternateUrls={alternateUrls}
 >
   <article>
     <a
-      class="font-sans text-[0.8125rem] text-muted no-underline hover:text-ink hover:underline"
-      href={getBlogUrl(lang)}>{copy.post.back}</a
+      class="text-link inline-flex items-center gap-1.5 font-sans text-sm underline"
+      href={getHomeUrl(lang)}
     >
+      <span aria-hidden="true">←</span>
+      {copy.post.back}
+    </a>
     <header class="border-line mt-6 border-b pb-8">
       <p class="text-muted font-sans text-[0.8125rem]">
         {formatDate(post.data.date, lang)}

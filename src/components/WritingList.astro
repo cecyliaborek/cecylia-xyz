@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import PostPreview from './PostPreview.astro';
+import {
+  getExternalPosts,
+  getLocalPostPreview,
+  sortWritingPosts,
+} from '../lib/posts';
+import {
+  type Language,
+} from '../lib/site';
+
+interface Props {
+  language: Language;
+}
+
+const { language } = Astro.props;
+const localPosts = (await getCollection('blog'))
+  .filter((post) => post.data.language === language)
+  .map(getLocalPostPreview);
+const posts = sortWritingPosts([...getExternalPosts(), ...localPosts]);
+---
+
+<ul class="writing-list">
+  {
+    posts.map((post) => <PostPreview post={post} locale={language} />)
+  }
+</ul>

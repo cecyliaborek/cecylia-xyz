@@ -44,7 +44,7 @@ export const ui = {
       noPosts: 'No posts match this category.',
     },
     post: {
-      back: 'Back to posts',
+      back: 'Back to home',
       translation: 'Translation',
     },
   },
@@ -71,7 +71,7 @@ export const ui = {
       noPosts: 'Brak wpisów w tej kategorii.',
     },
     post: {
-      back: 'Wróć do wpisów',
+      back: 'Wróć do strony głównej',
       translation: 'Tłumaczenie',
     },
   },
@@ -83,10 +83,6 @@ export function isLanguage(value: string | undefined): value is Language {
 
 export function getHomeUrl(language: Language) {
   return `/${language}/`;
-}
-
-export function getBlogUrl(language: Language) {
-  return `/${language}/blog/`;
 }
 
 export function getCategoryLabel(category: Category, language: Language) {
@@ -124,5 +120,5 @@ export function getPostLanguageSwitchUrl(
 
   return translatedPost
     ? getPostUrl(translatedPost)
-    : getBlogUrl(targetLanguage);
+    : getHomeUrl(targetLanguage);
 }
