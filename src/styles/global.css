@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  @apply bg-page text-ink font-serif antialiased;
+  @apply bg-page text-ink font-sans antialiased;
 }
 
 a {
@@ -35,17 +35,20 @@ a {
 }
 
 .post-content > * + * {
-  @apply mt-5;
+  @apply mt-4;
 }
 
-.post-content h2,
+.post-content h2 {
+  @apply text-ink mt-8 text-[1.5rem] leading-tight font-normal tracking-tight;
+}
+
 .post-content h3 {
-  @apply text-ink mt-9 font-normal;
+  @apply text-ink mt-6 text-[1.25rem] leading-snug font-normal tracking-tight;
 }
 
 .post-content p,
 .post-content li {
-  @apply leading-8;
+  @apply leading-7;
 }
 
 .post-content a {
@@ -69,6 +72,10 @@ a {
   @apply mt-14 font-sans text-[1.25rem] font-bold tracking-tight sm:mt-16;
 }
 
+.home-content > .writing-list {
+  @apply list-disc pl-5;
+}
+
 .home-content > p {
   @apply mt-5 text-[1.0625rem] leading-7;
 }
@@ -86,7 +93,8 @@ a {
   @apply list-decimal;
 }
 
-.home-content li {
+.home-content > ul li,
+.home-content > ol li {
   @apply text-[1.0625rem] leading-7;
 }
 
