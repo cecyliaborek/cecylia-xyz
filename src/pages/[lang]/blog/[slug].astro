@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 import {
   formatDate,
   getHomeUrl,
@@ -8,10 +8,10 @@ import {
   ui,
   type BlogPost,
   type Language,
-} from '../../../../lib/site';
+} from '../../../lib/site';
 
 export async function getStaticPaths() {
-  const localPostFiles = import.meta.glob('../../../../content/blog/**/*.md');
+  const localPostFiles = import.meta.glob('../../../content/blog/**/*.md');
 
   if (Object.keys(localPostFiles).length === 0) {
     return [];
@@ -22,7 +22,6 @@ export async function getStaticPaths() {
   return posts.map((post) => ({
     params: {
       lang: post.data.language,
-      category: post.data.category,
       slug: post.data.slug,
     },
     props: { post },

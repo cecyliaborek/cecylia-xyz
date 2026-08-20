@@ -1,2 +1,6 @@
 # Cloudflare Pages edge redirect for the default language.
 / /en/ 301
+
+# Preserve links to the previous category-based post URLs.
+/en/blog/:category/:slug /en/blog/:slug/ 301
+/pl/blog/:category/:slug /pl/blog/:slug/ 301

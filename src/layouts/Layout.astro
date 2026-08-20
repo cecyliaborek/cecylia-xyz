@@ -82,16 +82,7 @@ const pageTitle =
         <slot />
       </main>
 
-      <footer
-        id="contact"
-        class="text-muted mt-16 flex flex-col gap-2 font-sans text-[0.8125rem] sm:mt-20 sm:flex-row sm:items-center sm:justify-between"
-      >
-        <p>
-          {copy.footer.contact}{' '}
-          <a class="text-ink hover:underline" href="mailto:hello@example.com"
-            >hello@example.com</a
-          >
-        </p>
+      <footer class="text-muted mt-16 font-sans text-[0.8125rem] sm:mt-20">
         <p>© {new Date().getFullYear()} {copy.siteName}</p>
       </footer>
     </div>

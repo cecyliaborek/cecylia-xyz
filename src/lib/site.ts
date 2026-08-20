@@ -34,9 +34,6 @@ export const ui = {
       languageSwitch: 'Language switch',
       postFilters: 'Post filters',
     },
-    footer: {
-      contact: 'Email me at',
-    },
     blog: {
       title: 'Posts',
       category: 'Category',
@@ -60,9 +57,6 @@ export const ui = {
       primaryNavigation: 'Główna nawigacja',
       languageSwitch: 'Przełącznik języka',
       postFilters: 'Filtry wpisów',
-    },
-    footer: {
-      contact: 'Napisz do mnie',
     },
     blog: {
       title: 'Wpisy',
@@ -90,7 +84,7 @@ export function getCategoryLabel(category: Category, language: Language) {
 }
 
 export function getPostUrl(post: BlogPost) {
-  return `/${post.data.language}/blog/${post.data.category}/${post.data.slug}/`;
+  return `/${post.data.language}/blog/${post.data.slug}/`;
 }
 
 export function formatDate(date: Date, language: Language) {
