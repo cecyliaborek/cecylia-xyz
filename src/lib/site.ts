@@ -34,9 +34,6 @@ export const ui = {
       languageSwitch: 'Language switch',
       postFilters: 'Post filters',
     },
-    footer: {
-      contact: 'Email me at',
-    },
     blog: {
       title: 'Posts',
       category: 'Category',
@@ -60,9 +57,6 @@ export const ui = {
       primaryNavigation: 'Główna nawigacja',
       languageSwitch: 'Przełącznik języka',
       postFilters: 'Filtry wpisów',
-    },
-    footer: {
-      contact: 'Napisz do mnie',
     },
     blog: {
       title: 'Wpisy',
