@@ -90,7 +90,7 @@ export function getCategoryLabel(category: Category, language: Language) {
 }
 
 export function getPostUrl(post: BlogPost) {
-  return `/${post.data.language}/blog/${post.data.category}/${post.data.slug}/`;
+  return `/${post.data.language}/blog/${post.data.slug}/`;
 }
 
 export function formatDate(date: Date, language: Language) {
